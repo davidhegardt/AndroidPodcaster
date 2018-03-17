@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/list_selector"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:clickable="true"
+    >
+
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="3dp"
+    android:background="@drawable/image_bg"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:id="@+id/linearLayout"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:id="@+id/imgPodcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/dummy_image_episode" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtEpisodeTitle"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:text="@string/ep_nr_and_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtEpisodeDesc"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEpisodeTitle"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:text="Long desc"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtEpisodeDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/txtEpisodeTitle"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="-15dp"
+        android:layout_marginLeft="3dp"
+        android:text="Date" />
+
+    <ImageButton
+        android:id="@+id/btnPlayEpisode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_play_circle_outline_black_36dp"
+        android:layout_below="@+id/txtEpisodeDate"
+        android:layout_alignEnd="@+id/txtEpisodeDate" />
+
+    <ImageButton
+        android:id="@+id/btnDownloadEpisode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_file_download_black_24dp"
+        app:srcCompat="@drawable/ic_file_download_black_36dp"
+        android:layout_below="@+id/progressBarEpisode"
+        android:layout_alignStart="@+id/btnPlayEpisode" />
+
+    <ProgressBar
+        android:id="@+id/progressBarEpisode"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtEpisodeDesc"
+        android:layout_alignStart="@+id/txtEpisodeDesc"
+        android:layout_below="@+id/txtEpisodeDesc" />
+
+    <TextView
+        android:id="@+id/txtEpisodeDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        android:layout_below="@+id/progressBarEpisode"
+        android:layout_alignStart="@+id/progressBarEpisode" />
+
+    <ImageButton
+        android:id="@+id/imgRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:tint="@android:color/holo_green_dark"
+        app:srcCompat="@drawable/ic_check_circle_black_24dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/txtEpDownloaded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/progressBarEpisode"
+        android:layout_below="@+id/progressBarEpisode"
+        android:text="Downloaded"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/txtEpPodcastTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="TextView"
+        android:textColor="@color/colorBlueHue"
+        android:textStyle="bold"
+        android:maxEms="10"
+        android:layout_alignBaseline="@+id/txtEpisodeDate"
+        android:layout_alignBottom="@+id/txtEpisodeDate"
+        android:layout_toEndOf="@+id/linearLayout" />
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+Joe Rogan Experience,http://joeroganexp.joerogan.libsynpro.com/rss,standard
+Alex och Sigges Podcast,http://alexosigge.libsyn.com/rss,modern
+Tyngre Radio,http://tyngreradio.libsyn.com/rss,modern
+Borspodden,http://borspodden.libsyn.com/rss,modern
+Filip & Fredrik Podcast,http://rss.acast.com/filipandfredrik,acast
+Allt du velat veta,http://rss.acast.com/alltduvelatveta,acast
+WTF Podcast,https://wtfpod.libsyn.com/rss,modern
+Spar Podcast,http://rss.acast.com/sparpodcast,acast
+Historiepodden,https://cdn.radioplay.se/data/rss/304.xml,xml
+Fordomspodden,http://rss.acast.com/fordomspodden,acast
+P3 Dokumentar,http://api.sr.se/api/rss/pod/3966,xmlsr
+P3 Spel,http://api.sr.se/api/rss/pod/14424,xmlsr

@@ -1,0 +1,186 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dahe0070.androidpodcaster.PodPlayerFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_player"
+        android:id="@+id/relativeLayout">
+
+        <ImageButton
+            android:id="@+id/imgPodEpisode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/dummy_image_episode" />
+
+        <TextView
+            android:id="@+id/txtPodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgPodEpisode"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/imgPodEpisode"
+            android:text="@string/stringPodName" />
+
+        <TextView
+            android:id="@+id/txtEpisodeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/txtPodName"
+            android:layout_below="@+id/txtPodName"
+            android:text="@string/stringEpisodeName"
+            android:layout_toStartOf="@+id/txtFileSize"
+            android:layout_alignBottom="@+id/txtFileSize" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/txtPodName"
+            android:layout_marginRight="10dp"
+            android:text="@string/stringDate" />
+
+        <TextView
+            android:id="@+id/txtFileSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imgPodEpisode"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:text="@string/file_size" />
+    </RelativeLayout>
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:background="@drawable/bg_player"
+        android:id="@+id/linearPlayerContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_rounded"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageButton
+                android:id="@+id/btnPrev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/btnBackward"
+                android:layout_marginEnd="13dp"
+                android:layout_toStartOf="@+id/btnBackward"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/circled_prev_filled" />
+
+            <ImageButton
+                android:id="@+id/btnBackward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/btnPlayPause"
+                android:layout_marginEnd="14dp"
+                android:layout_toStartOf="@+id/btnPlayPause"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/circled_back_filled" />
+
+            <ImageButton
+                android:id="@+id/btnPlayPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:tint="@android:color/background_dark"
+                app:srcCompat="@drawable/circled_pause_large" />
+
+            <ImageButton
+                android:id="@+id/btnForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/btnPlayPause"
+                android:layout_marginStart="13dp"
+                android:layout_toEndOf="@+id/btnPlayPause"
+                android:background="@android:color/transparent"
+                android:elevation="5dp"
+                app:srcCompat="@drawable/circled_forward_filled" />
+
+            <ImageButton
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/btnForward"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/btnForward"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/circled_next_filled" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearPlayerContainer"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtCurrTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekBar"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="5dp"
+        android:text="@string/currtime" />
+
+    <TextView
+        android:id="@+id/txtTotalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/seekBar"
+        android:layout_marginBottom="10dp"
+        android:paddingRight="5dp"
+        android:text="@string/totaltime" />
+
+    <TextView
+        android:id="@+id/txtEpisodeDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout"
+        android:background="@drawable/bg_player"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/stringEpisodeDesc" />
+
+    <ImageView
+        android:id="@+id/imgStreaming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/stream_icon"
+        android:layout_above="@+id/txtEpisodeDescription"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp" />
+
+
+</RelativeLayout>

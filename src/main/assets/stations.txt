@@ -1,0 +1,15 @@
+Bandit Rock,http://stream-ice.mtgradio.com:8080/stat_bandit.m3u,bandit_logo
+Lugna Favoriter,http://stream-ice.mtgradio.com:8080/stat_lugna_favoriter.m3u,lugna_logo
+P1,http://sverigesradio.se/topsy/direkt/132-hi-mp3.m3u,p1_logo
+P2,http://sverigesradio.se/topsy/direkt/2562-hi-mp3.m3u,p2_logo
+P3,http://sverigesradio.se/topsy/direkt/164-hi-mp3.m3u,p3_logo
+P4,http://sverigesradio.se/topsy/direkt/701-hi-mp3.m3u,p4_logo
+Rix FM,http://stream-ice.mtgradio.com:8080/stat_rix_fm.m3u,rixfm_logo
+Megaton Cafe Radio,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://us2.internet-radio.com:8443/listen.pls&t=.m3u,dummy_radio
+Classic-Rock Florida,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://us2.internet-radio.com:8046/listen.pls&t=.m3u,dummy_radio
+Classic Rock Planet HD Plus,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://uk6.internet-radio.com:8022/listen.pls&t=.m3u,dummy_radio
+Pink Noise Radio,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://uk1.internet-radio.com:8004/listen.pls&t=.m3u,dummy_radio
+Smooth Jazz CD101.9 NY,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://us1.internet-radio.com:8144/listen.pls&t=.m3u,dummy_radio
+Big Blue Swing,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://209.236.126.18:8002/listen.pls&t=.m3u,dummy_radio
+Dinner Jazz Excursion,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://64.78.234.173:8240/listen.pls&t=.m3u,dummy_radio
+Hardstyle Radio,https://www.internet-radio.com/servers/tools/playlistgenerator/?u=http://46.165.203.195:8000/listen.pls&t=.m3u,dummy_radio

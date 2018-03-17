@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtResultPodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:maxLines="1"
+        android:text="TextView"
+        android:textColor="@color/colorBorder"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/image_bg"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/resultImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/txtResultPodName"
+            android:layout_below="@+id/txtResultPodName"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/dummy_image" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtResultFeed"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/txtResultPodName"
+        android:layout_below="@+id/txtResultPodName"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btnSubscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp"
+        android:text="Subscribe" />
+
+</RelativeLayout>

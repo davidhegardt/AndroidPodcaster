@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+    android:background="@drawable/list_selector"
+    android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+    >
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="3dp"
+    android:background="@drawable/image_bg"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:id="@+id/linearLayout">
+
+    <ImageButton
+        android:id="@+id/imgPodcast"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/dummy_image" />
+
+</LinearLayout>
+
+    <TextView
+        android:id="@+id/txtPodTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/podcast_title"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/txtPodDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Long Description..."
+        android:layout_marginRight="5dp"
+        android:maxLines="5"
+        android:layout_below="@+id/txtPodTitle"
+        android:layout_toEndOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/txtPodCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Category"
+        android:layout_below="@+id/btnReadMore"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/btnReadMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtPodCategory"
+        android:layout_below="@+id/txtPodDesc"
+        android:tint="@color/colorBlueHue"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+</RelativeLayout>

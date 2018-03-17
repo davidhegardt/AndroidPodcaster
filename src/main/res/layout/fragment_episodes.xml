@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="dahe0070.androidpodcaster.EpisodesFragment">
+
+    <!--
+    <ListView
+        android:id="@+id/listEpisodes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:listSelector="@drawable/list_selector"
+        android:divider="#b5b5b5"
+        android:dividerHeight="2dp"
+        android:layout_alignParentTop="true" />
+
+        -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listHeader"
+        android:background="@drawable/bg_epheader"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        >
+
+
+
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:background="@drawable/image_bg"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/imageWrapper">
+
+            <ImageButton
+                android:id="@+id/imgCurrPod"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/dummy_image" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtHeaderPodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_toRightOf="@id/imageWrapper"
+            android:text="@string/jre" />
+
+        <TextView
+            android:id="@+id/txtPodHeaderDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:text="@string/long_desc"
+            android:textSize="10sp"
+            android:layout_below="@+id/txtHeaderPodName"
+            android:layout_toEndOf="@+id/imageWrapper" />
+
+        <Button
+            android:id="@+id/btnSubscribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/txtPodHeaderDesc"
+            android:layout_marginEnd="12dp"
+            android:text="Subscribe"
+            android:layout_toEndOf="@+id/imageWrapper" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listEpisodes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/listHeader"
+        />
+
+
+
+
+</RelativeLayout>

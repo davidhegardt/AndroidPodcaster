@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="dahe0070.androidpodcaster.SearchFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/upperLayout"
+        android:background="@drawable/bg_epheader"
+        >
+
+        <EditText
+            android:id="@+id/txtSearchPodcast"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:theme="@style/MyEditText"
+            android:hint="Podcast name"
+            />
+
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblSearchName"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/txtSearchPodcast"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        app:srcCompat="@drawable/ic_search_black_24dp" />
+
+        <TextView
+            android:id="@+id/lblSearchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="5dp"
+            android:text="Search by name"
+            android:textColor="@color/colorWhite" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upperLayout"
+        android:id="@+id/relativeLayout2"
+        android:background="@drawable/bg_search"
+        android:layout_marginTop="5dp"
+        >
+
+        <TextView
+            android:id="@+id/labelCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="5dp"
+            android:text="Search by Category"
+            android:textColor="@color/cardview_dark_background" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/category_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/labelCategory"
+        android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchLayout"
+        android:layout_below="@id/upperLayout">
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listSearchResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout2" />
+
+
+</RelativeLayout>
