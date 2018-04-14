@@ -115,14 +115,14 @@ public class DownloadedEpisodesFragment extends Fragment implements SearchView.O
         //return super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.sort_by_date :
-                Toast.makeText(getContext(),"Episodes sorted by date",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.ep_sorted_by_date,Toast.LENGTH_SHORT).show();
                 if(!episodes.isEmpty()){
                     episodes = Helper.sortByDate(episodes);
                     recyclerViewAdapter.notifyDataSetChanged();
                 }
                 return true;
             case R.id.sort_by_pod :
-                Toast.makeText(getContext(),"Episodes sorted by podcast",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.ep_sorted_by_podcast,Toast.LENGTH_SHORT).show();
                 if(!episodes.isEmpty()){
                     episodes = Helper.sortByPodcast(episodes);
                     recyclerViewAdapter.notifyDataSetChanged();

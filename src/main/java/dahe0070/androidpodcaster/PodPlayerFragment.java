@@ -339,7 +339,7 @@ public class PodPlayerFragment extends Fragment implements View.OnClickListener,
             fileSize.setText(sizeMessage);
             streaming.setVisibility(View.GONE);
         } else {
-            fileSize.setText("Streaming..");
+            fileSize.setText(R.string.streaming);
 
         }
 

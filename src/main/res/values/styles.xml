@@ -23,4 +23,10 @@
         <item name="colorControlActivated">@color/colorBlueHue</item>
     </style>
 
+    <style name="grey_theme" parent="AppTheme.NoActionBar" >
+        <item name="colorPrimary">@color/colorDarkGrey</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

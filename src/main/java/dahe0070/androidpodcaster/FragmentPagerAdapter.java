@@ -80,6 +80,7 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
             case 8 : return CategoryFragment.newInstance(position + 1, categoryList.get(7));
 
             case 10 :  testFirstFragment = EpisodesFragment.newInstance(epList,currPod,true); notifyDataSetChanged(); return testFirstFragment;
+            // Instantiate adapterMode here
 
             default: return NewSearchFragment.newInstance();
 
@@ -101,15 +102,15 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
     private void setupCategories(){
         categoryList = new ArrayList<>();
 
-        Category comedy = new Category("Comedy",comedyID,R.drawable.comedy_icon_white);
-        Category film = new Category("Film/Movies",tvfilmdID,R.drawable.cinema_icon_white);
-        Category science = new Category("Science",scienceID,R.drawable.science_icon_white);
-        Category tech = new Category("Technology",techID,R.drawable.tech_icon_white);
-        Category business = new Category("Business",businessID,R.drawable.business_icon_white);
-        Category games = new Category("Games",gamesID,R.drawable.games_icon_white);
-        Category education = new Category("Education",educationID,R.drawable.tech_icon_white);
-        Category politics = new Category("Politics",policitsID,R.drawable.tech_icon_white);
-        Category society = new Category("Society",societyID,R.drawable.tech_icon_white);
+        Category comedy = new Category(context.getString(R.string.Comedy_cat),comedyID,R.drawable.comedy_icon_white);
+        Category film = new Category(context.getString(R.string.film_cat),tvfilmdID,R.drawable.cinema_icon_white);
+        Category science = new Category(context.getString(R.string.science_cat),scienceID,R.drawable.science_icon_white);
+        Category tech = new Category(context.getString(R.string.tech_cat),techID,R.drawable.tech_icon_white);
+        Category business = new Category(context.getString(R.string.business_cat),businessID,R.drawable.business_icon_white);
+        Category games = new Category(context.getString(R.string.games_cat),gamesID,R.drawable.games_icon_white);
+        Category education = new Category(context.getString(R.string.education_cat),educationID,R.drawable.tech_icon_white);
+        Category politics = new Category(context.getString(R.string.politcs_cat),policitsID,R.drawable.tech_icon_white);
+        Category society = new Category(context.getString(R.string.society_cat),societyID,R.drawable.tech_icon_white);
 
         categoryList.add(comedy);
         categoryList.add(film);
@@ -121,7 +122,7 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
         categoryList.add(politics);
         categoryList.add(society);
 
-        tabTitles = new String[] { "Search",comedy.title, film.title, science.title, tech.title, business.title, games.title,"Tab7" };
+        tabTitles = new String[] { context.getString(R.string.search),comedy.title, film.title, science.title, tech.title, business.title, games.title, education.title, politics.title,society.title };
 
     }
 

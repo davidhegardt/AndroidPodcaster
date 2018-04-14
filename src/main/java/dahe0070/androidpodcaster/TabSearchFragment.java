@@ -1,16 +1,21 @@
 package dahe0070.androidpodcaster;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -23,7 +28,7 @@ import java.util.ArrayList;
  * Use the {@link TabSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabSearchFragment extends Fragment {
+public class TabSearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private OnFragmentInteractionListener mListener;
     private ViewPager mViewPager;
@@ -70,6 +75,9 @@ public class TabSearchFragment extends Fragment {
         }
     }
 
+    private Spinner languageSpinner;
+    private ArrayList<Country> countryList;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -77,15 +85,80 @@ public class TabSearchFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager(),getActivity()));
 
+        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+                //super.onPageSelected(position);
+                //mViewPager.getAdapter().notifyDataSetChanged();
+            }
+        });
+
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        languageSpinner = (Spinner) view.findViewById(R.id.langSpinner);
+
+        //String[] lang = {"Swe","Eng","Russian"};
+        countryList = Helper.addFirstCountries();
+        countryList.addAll(Helper.getCountries());
+        //countryList = Helper.getCountries();
+        ArrayList<String> countryNames = new ArrayList<>();
+
+        for (Country c : countryList){
+            countryNames.add(c.getCountryName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,countryNames);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        languageSpinner.setAdapter(adapter);
+        languageSpinner.setOnItemSelectedListener(this);
+
     }
 
-    public void testFindFragmet(ArrayList<PodEpisode> mList,Podcast currPod){
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String choice = parent.getItemAtPosition(position).toString();
+
+        SharedPreferences languagePref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String defaultLang = "SE";
+        SharedPreferences.Editor prefEdit = languagePref.edit();
+
+        String codeCountry = countryList.get(position).getCountryCode();
+        prefEdit.putString(getString(R.string.searchLanguage),codeCountry);
+        prefEdit.commit(); mViewPager.getAdapter().notifyDataSetChanged();
+
+
+
+/*
+        switch (choice){
+            case "Swe" : prefEdit.putString(getString(R.string.searchLanguage),"SE");
+                         prefEdit.commit(); mViewPager.getAdapter().notifyDataSetChanged();
+                break;
+            case "Eng" : prefEdit.putString(getString(R.string.searchLanguage),"GB");
+                prefEdit.commit(); mViewPager.getAdapter().notifyDataSetChanged();
+                break;
+            case "Russian" : prefEdit.putString(getString(R.string.searchLanguage),"RU");
+                prefEdit.commit(); mViewPager.getAdapter().notifyDataSetChanged();
+                break;
+        }
+        */
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void testFindFragmet(ArrayList<PodEpisode> mList, Podcast currPod){
         FragmentPagerAdapter fa = (FragmentPagerAdapter) mViewPager.getAdapter();
         fa.setcurrPodcast(currPod);
         fa.setEpList(mList);
         Fragment fragment = fa.getItem(10);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor prefEdit = sharedPreferences.edit();
+        prefEdit.putBoolean("itunesSubscribe",true);
         android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         transaction.replace(R.id.main_view,fragment).addToBackStack("itunesview").commit();

@@ -1,6 +1,7 @@
 package dahe0070.androidpodcaster;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
@@ -137,7 +139,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
                             Log.i("REMOVAL of EP", "" + list.get(i).getEpTitle());
                             Helper.removeMP3(list.get(i).getLocalLink());
                             podDatabase.removeDownload(list.get(i).getEpTitle());
-                            Toast.makeText(context, "Episode removed : " + list.get(i).getEpTitle(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, context.getString(R.string.ep_removed_colon) + list.get(i).getEpTitle(), Toast.LENGTH_SHORT).show();
                             list.remove(i);
                             notifyDataSetChanged();
                             mode.finish();
@@ -149,7 +151,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
                             Log.i("REMOVAL of EP", "" + list.get(i).getEpTitle());
                             Helper.removeMP3(list.get(i).getLocalLink());
                             podDatabase.deleteEpisode(list.get(i).getEpTitle());
-                            Toast.makeText(context, "Episode removed : " + list.get(i).getEpTitle(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, context.getString(R.string.episode_removed) + list.get(i).getEpTitle(), Toast.LENGTH_SHORT).show();
                             list.remove(i);
                             notifyDataSetChanged();
                             mode.finish();
@@ -158,7 +160,7 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
                 }
 
                 else {
-                    Toast.makeText(context,"CANNOT REMOVE THIS EPISODE" + TYPE,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,context.getString(R.string.cannot_remove_this_ep) + TYPE,Toast.LENGTH_SHORT).show();
                 }
             }
             return false;
@@ -233,8 +235,10 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             holder.btnDownload.setVisibility(View.GONE);
             holder.btnPlay.setVisibility(View.GONE);
         }
-
-        if(TYPE.equals("ITUNES")){
+        SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean defValue = false;
+        boolean itunesOK = dbPreference.getBoolean("itunesSubscribe",defValue);
+        if(itunesOK){
             holder.btnDownload.setVisibility(View.GONE);
             holder.btnPlay.setVisibility(View.GONE);
         }
@@ -351,14 +355,14 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
 
                 switch (v.getId()) {
                     case R.id.btnPlayEpisode:
-                        Toast.makeText(context, "Klickade på" + currTitle, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.clicked_on + currTitle, Toast.LENGTH_SHORT).show();
                         File sdCard = new File(Environment.getExternalStorageDirectory(), "downloaded_episodes");
                         File file = new File(sdCard, currTitle + ".mp3");
                         if (file.exists() && !file.isDirectory()) {
                             listener.episodeClick(currTitle, context, this.mp3Link, podIndex);
                         } else {
                             listener.streamEpisode(currTitle, context, mp3Link, podIndex);
-                            Toast.makeText(context, "Streamar avsnitt..", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.streamar_avsnitt, Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case R.id.btnDownloadEpisode:

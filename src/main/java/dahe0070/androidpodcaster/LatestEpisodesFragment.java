@@ -126,14 +126,14 @@ public class LatestEpisodesFragment extends Fragment implements SearchView.OnQue
         //return super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.sort_by_date :
-                Toast.makeText(getContext(),"Episodes sorted by date",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.ep_sorted_by_date,Toast.LENGTH_SHORT).show();
                 if(!epList.isEmpty()){
                     epList = Helper.sortByDate(epList);
                     recyclerViewAdapter.notifyDataSetChanged();
                 }
                 return true;
             case R.id.sort_by_pod :
-                Toast.makeText(getContext(),"Episodes sorted by podcast",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.ep_sorted_by_podcast,Toast.LENGTH_SHORT).show();
                 if(!epList.isEmpty()){
                     epList = Helper.sortByPodcast(epList);
                     recyclerViewAdapter.notifyDataSetChanged();

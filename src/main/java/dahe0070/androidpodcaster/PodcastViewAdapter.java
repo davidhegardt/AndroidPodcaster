@@ -143,7 +143,7 @@ public class PodcastViewAdapter extends ArrayAdapter<String> implements Filterab
                     //Toast.makeText(context, "Clicked on " + podname, Toast.LENGTH_SHORT).show();
                     listener.podClick(index);
                 } else {
-                    Toast.makeText(context, "Loading..STOP CLICKING!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.stop_clicking,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -159,7 +159,7 @@ public class PodcastViewAdapter extends ArrayAdapter<String> implements Filterab
                     //Toast.makeText(context, "Clicked on" + titles[podChoice], Toast.LENGTH_SHORT).show();
                     listener.podClick(podChoice);
                 } else {
-                    Toast.makeText(context, "Loading..STOP CLIKING!!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.stop_clicking,Toast.LENGTH_SHORT).show();
                 }
             }
         });

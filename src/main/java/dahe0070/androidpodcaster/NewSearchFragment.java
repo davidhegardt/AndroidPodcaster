@@ -148,8 +148,8 @@ public class NewSearchFragment extends Fragment {
         //this.searchTerm = urlString;
         results = new ArrayList<>();
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setTitle("Loading results");
-        progressDialog.setMessage("Setting up podcasts..");
+        progressDialog.setTitle(getString(R.string.loading_results));
+        progressDialog.setMessage(getString(R.string.setting_up_podcast));
         progressDialog.setMax(100);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIcon(R.drawable.radio_tower_large);

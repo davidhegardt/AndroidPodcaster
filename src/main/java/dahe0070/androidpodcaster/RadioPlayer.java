@@ -74,7 +74,7 @@ public class RadioPlayer {
     public void startPlay() {
         stationPlayer.prepareAsync();
 
-        final ProgressDialog progressDialog = ProgressDialog.show(context,"Loading Station " + stationName,"Loading..");
+        final ProgressDialog progressDialog = ProgressDialog.show(context,context.getString(R.string.loading_station) + stationName,"" + context.getString(R.string.loading));
 
         stationPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override

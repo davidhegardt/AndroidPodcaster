@@ -152,8 +152,8 @@ public class PodcastFactory {
             super.onPreExecute();
 
             progressDialog = new ProgressDialog(ctx);
-            progressDialog.setTitle("Loading episodes");
-            progressDialog.setMessage("Updating..");
+            progressDialog.setTitle(ctx.getString(R.string.Loading_episodes_title));
+            progressDialog.setMessage(ctx.getString(R.string.updating));
             progressDialog.setMax(100);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setCancelable(false);

@@ -46,7 +46,7 @@ public class Search_View_Holder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btnSubscribe : createPodcast();
+            case R.id.btnSubscribe : showPodInfo();
                 break;
             case R.id.resultImage : showPodInfo();
                 break;

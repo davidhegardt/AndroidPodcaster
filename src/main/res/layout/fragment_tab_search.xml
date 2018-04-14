@@ -5,6 +5,12 @@
     android:orientation="vertical"
     tools:context="dahe0070.androidpodcaster.TabSearchFragment" xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/langSpinner"
+        ></Spinner>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"

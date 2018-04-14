@@ -45,6 +45,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.Toast;
 
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity
             servicePlayer = binder.getService();
             serviceBound = true;
 
-            Toast.makeText(MainActivity.this,"Service Bound",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.service_bound,Toast.LENGTH_SHORT).show();
             Log.i("service bound","now");
         }
 
@@ -181,9 +182,9 @@ public class MainActivity extends AppCompatActivity
         super.onConfigurationChanged(newConfig);
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.landscape, Toast.LENGTH_SHORT).show();
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.portrait, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -385,7 +386,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if(podDatabase.getRowCount() < 1) {
-            Toast.makeText(MainActivity.this,"You are using this app for the first time - first time sync will take a while",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, R.string.first_time_message,Toast.LENGTH_LONG).show();
             firstTime = true;
             //setupPodcasts();
             setDBComplete(false);
@@ -417,8 +418,8 @@ public class MainActivity extends AppCompatActivity
             protected void onStartLoading() {
                 //super.onStartLoading();
                 progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.setTitle("First time setup");
-                progressDialog.setMessage("Setting up podcasts..");
+                progressDialog.setTitle(getString(R.string.first_time_setup));
+                progressDialog.setMessage(getString(R.string.setting_up_podcast));
                 progressDialog.setMax(100);
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog.setIcon(R.drawable.radio_tower_large);
@@ -519,13 +520,13 @@ public class MainActivity extends AppCompatActivity
                             if (shakeToast != null) {
                                 shakeToast.cancel();
                             }
-                            shakeToast.makeText(MainActivity.this,"Pausing Playback",Toast.LENGTH_SHORT).show();
+                            shakeToast.makeText(MainActivity.this, R.string.pausing_playback,Toast.LENGTH_SHORT).show();
                         } else {
                             resumeAudio();
                             if (shakeToast != null){
                                 shakeToast.cancel();
                             }
-                            shakeToast.makeText(MainActivity.this,"Resuming Playback",Toast.LENGTH_SHORT).show();
+                            shakeToast.makeText(MainActivity.this, R.string.resuming_playback,Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -597,7 +598,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void offlineMessage() {
-        Toast.makeText(MainActivity.this, "Network offline - Go to downloaded episodes", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, R.string.network_offline_message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -640,7 +641,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         if (id == R.id.nav_radio) {
-            setTitle("Radio Stations");
+            setTitle(getString(R.string.radio_stations_title));
             if (!isNetworkAvailable()){
                 offlineMessage();
             } else {
@@ -663,28 +664,33 @@ public class MainActivity extends AppCompatActivity
 
                 fm.beginTransaction().replace(R.id.main_view, test, "PodPlayer").addToBackStack(null).commit();
             } else {
-                Toast.makeText(MainActivity.this,"No pod playing - select an episode from the menu",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.no_pod_playing,Toast.LENGTH_SHORT).show();
             }
         }
 
         if (id == R.id.nav_downloaded){
-            setTitle("Downloaded Episodes");
+            setTitle(getString(R.string.Downloaded_episodes_title));
             fragmentManager.beginTransaction().replace(R.id.main_view, new DownloadedEpisodesFragment(),"downloaded").addToBackStack(null).commit();
         }
 
         if (id == R.id.nav_progress){
-            setTitle("Continue Episodes");
+            setTitle(getString(R.string.Continue_episodes_title));
             fragmentManager.beginTransaction().replace(R.id.main_view, new StartedEpisodesFragment(),"progress").addToBackStack(null).commit();
         }
-
+/*
         if (id == R.id.nav_search){
             setTitle("Search for podcast");
             fragmentManager.beginTransaction().replace(R.id.main_view, new SearchFragment(),"search").addToBackStack(null).commit();
         }
-
-        if(id == R.id.tab_test){
-            setTitle("Tabs test");
+*/
+        if(id == R.id.nav_tab_search){
+            setTitle(getString(R.string.discover_podcasts));
             fragmentManager.beginTransaction().replace(R.id.main_view, new TabSearchFragment(),"tabs").addToBackStack(null).commit();
+            /* PROGRAMATICALLY CHANGE NAVBAR COLOR */
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            View header = navigationView.getHeaderView(0);
+            LinearLayout sideNavLayout = (LinearLayout)header.findViewById(R.id.sideNavLayout);
+            sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_red);
         }
 
         if(id == R.id.nav_latest){
@@ -692,7 +698,7 @@ public class MainActivity extends AppCompatActivity
             if (!isNetworkAvailable()) {
                 offlineMessage();
             } else {
-                setTitle("Latest Episodes");
+                setTitle(getString(R.string.latest_episodes));
                 if (!latestStared) {
                     startLatestEpisodes();
                 } else {
@@ -893,6 +899,9 @@ public class MainActivity extends AppCompatActivity
         getIntent().putExtra("Episodes",episodes);
 
         getIntent().putExtra("currPodcast",podcasts.get(currPodIndex));
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor prefEdit = sharedPreferences.edit();
+        prefEdit.putBoolean("itunesSubscribe",false);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -1161,8 +1170,8 @@ public class MainActivity extends AppCompatActivity
 
         if (test != null) {
             AlertDialog.Builder showDialog = new AlertDialog.Builder(MainActivity.this);
-            showDialog.setTitle("Podcast Subscribed!");
-            showDialog.setMessage("Show episodes now ?");
+            showDialog.setTitle(R.string.podcast_subscribed);
+            showDialog.setMessage(R.string.show_ep_now_question);
 
             showDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -1176,18 +1185,18 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            showDialog.setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
+            showDialog.setNegativeButton(R.string.no_thanks, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
-                    Toast.makeText(MainActivity.this, "Podcast added - play it from Egen lista", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.podcast_added_message, Toast.LENGTH_LONG).show();
                 }
             });
 
             AlertDialog dialog = showDialog.create();
             dialog.show();
         } else {
-            Toast.makeText(MainActivity.this, "Podcast added - play it from Egen lista", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, R.string.podcast_added_message, Toast.LENGTH_LONG).show();
         }
 
 

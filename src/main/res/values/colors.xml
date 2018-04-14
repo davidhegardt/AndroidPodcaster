@@ -13,4 +13,7 @@
     <color name="colorNormalGrey">#bbbbbb</color>
     <color name="colorBlueHue">#008080</color>
     <color name="colorGreenGray">#89026954</color>
+    <color name="centerColor">#89026954</color>
+    <color name="endColor">#BF4BC99F</color>
+    <color name="startColor">#FF008080</color>
 </resources>

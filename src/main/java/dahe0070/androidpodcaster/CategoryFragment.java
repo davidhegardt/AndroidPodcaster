@@ -2,9 +2,11 @@ package dahe0070.androidpodcaster;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -57,6 +59,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
     //private String codeSweden = "SE";
     private String codeSweden = "KZ";
     private String codeUK = "GB";
+    private String codeLanguage = "";
     private String limit = "&limit=30";
     private SongInfo[] songs;
     private Category category;
@@ -97,7 +100,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_category, container, false);
         TextView textView = (TextView) view.findViewById(R.id.test_tab_textview);
-        textView.setText("Fragment #" + mPage);
+        textView.setText(R.string.fragment_cat_load);
         setupResults();
         //getActivity().getSupportLoaderManager().initLoader(OPERATION_LOAD_RESULTS,null,this);
         return view;
@@ -142,7 +145,11 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     public void createQuery(String category){
-        String search = baseURLCat + country + codeSweden + category + limit;
+        SharedPreferences langPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String defLanguage = "SE";
+        codeLanguage = langPref.getString(getString(R.string.searchLanguage),defLanguage);
+        //String search = baseURLCat + country + codeSweden + category + limit;
+        String search = baseURLCat + country + codeLanguage + category + limit;
         search(search);
     }
 
@@ -150,8 +157,8 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
         //this.searchTerm = urlString;
         results = new ArrayList<>();
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setTitle("Loading" + category.title);
-        progressDialog.setMessage("Setting up podcasts..");
+        progressDialog.setTitle(getString(R.string.Loading) + " " + category.title);
+        progressDialog.setMessage(getString(R.string.setting_up_podcast));
         progressDialog.setMax(100);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIcon(R.drawable.radio_tower_large);
@@ -265,8 +272,8 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
             protected void onStartLoading() {
                 //super.onStartLoading();
                 progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setTitle("Loading" + category.title);
-                progressDialog.setMessage("Setting up podcasts..");
+                progressDialog.setTitle(getString(R.string.Loading) + " " + category.title);
+                progressDialog.setMessage(getString(R.string.setting_up_podcast));
                 progressDialog.setMax(100);
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog.setIcon(R.drawable.radio_tower_large);

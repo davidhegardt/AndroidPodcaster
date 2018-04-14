@@ -104,14 +104,14 @@ public class View_Holder extends SwappingHolder implements View.OnClickListener,
 
             switch (v.getId()) {
                 case R.id.btnPlayEpisode:
-                    Toast.makeText(context, "Klickade på" + currTitle, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.clicked_on + currTitle, Toast.LENGTH_SHORT).show();
                     File sdCard = new File(Environment.getExternalStorageDirectory(), "downloaded_episodes");
                     File file = new File(sdCard, currTitle + ".mp3");
                     if (file.exists() && !file.isDirectory()) {
                         listener.episodeClick(currTitle, context, this.mp3Link, podIndex);
                     } else {
                         listener.streamEpisode(currTitle, context, mp3Link, podIndex);
-                        Toast.makeText(context, "Streamar avsnitt..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.streamar_avsnitt, Toast.LENGTH_SHORT).show();
                     }
                     break;
                 case R.id.btnDownloadEpisode:

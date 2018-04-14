@@ -28,15 +28,11 @@
             android:title="@string/latest_episodes"
             />
 
-        <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_search_black_24dp"
-            android:title="@string/search" />
 
         <item
-            android:id="@+id/tab_test"
-            android:icon="@drawable/film_icon"
-            android:title="Test tabs" />
+            android:id="@+id/nav_tab_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@string/search_podcasts" />
     </group>
 
 

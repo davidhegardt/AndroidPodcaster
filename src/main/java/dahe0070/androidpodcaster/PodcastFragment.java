@@ -132,7 +132,7 @@ public class PodcastFragment extends Fragment implements SearchView.OnQueryTextL
 
         spinner = (Spinner) getView().findViewById(R.id.podSpinner);
 
-        String[] choices = {"Välj lista","Svenska Poddar","Engelska Poddar","Egen Lista"};
+        String[] choices = {getString(R.string.select_list),getString(R.string.svenska_poddar),getString(R.string.engelska_poddar),getString(R.string.egen_lista)};
         /**
          * Lägg till val egen lista
          */
