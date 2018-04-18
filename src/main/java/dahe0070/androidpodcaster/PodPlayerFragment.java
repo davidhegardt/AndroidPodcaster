@@ -7,11 +7,13 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -22,6 +24,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -312,6 +315,9 @@ public class PodPlayerFragment extends Fragment implements View.OnClickListener,
         //eventHandler.removeCallbacks(updateEvents);
     }
 
+    private static final String THEME = "THEME_PREF";
+    private static final String DEFAULT_COLOR = "GREEN";
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -380,6 +386,10 @@ public class PodPlayerFragment extends Fragment implements View.OnClickListener,
         podName = (TextView) view.findViewById(R.id.txtPodName);
         podName.setText(currEpisode.getPodName());
 
+        SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String ThemeColor = dbPreference.getString(THEME,DEFAULT_COLOR);
+        changeTextColor(ThemeColor);
+
         episodeName = (TextView) view.findViewById(R.id.txtEpisodeName);
         episodeName.setText(currEpisode.getEpTitle());
 
@@ -428,6 +438,26 @@ public class PodPlayerFragment extends Fragment implements View.OnClickListener,
         //updateProgressBar();
 
 
+    }
+
+    private void changeTextColor(String theme){
+
+        switch (theme){
+            case "RED" : podName.setTextColor(Color.parseColor("#f44336"));
+                break;
+            case "PINK" : podName.setTextColor(Color.parseColor("#ec407a"));
+                break;
+            case "YELLOW" : podName.setTextColor(Color.parseColor("#ffca28"));
+                break;
+            case "ORANGE" : podName.setTextColor(Color.parseColor("#ff5722"));
+                break;
+            case "GREEN" : podName.setTextColor(Color.parseColor("#1b5e20"));
+                break;
+            case "BLUE" : podName.setTextColor(Color.parseColor("#0d47a1"));
+                break;
+            case "BROWN" : podName.setTextColor(Color.parseColor("#795548"));
+                break;
+        }
     }
 
 

@@ -1,0 +1,9 @@
+Transfert,http://feeds.megaphone.fm/transfert,swedish
+Splash,https://rss.art19.com/splash,swedish
+Les chemins de la philosophie,http://radiofrance-podcast.net/podcast09/rss_10467.xml,swedish
+Affaires sensibles,http://radiofrance-podcast.net/podcast09/rss_13940.xml,swedish
+Les pieds sur terre,http://radiofrance-podcast.net/podcast09/rss_10078.xml,swedish
+Les Grosses Têtes,http://www.rtl.fr/podcast/les-grosses-tetes.xml,swedish
+LSD La série documentaire,http://radiofrance-podcast.net/podcast09/rss_10177.xml,swedish
+Entre,https://feed.pippa.io/public/shows/entre,swedish
+Nouvelle École,https://feed.pippa.io/public/shows/5aa93c3d02e6c30d742dd776,swedish

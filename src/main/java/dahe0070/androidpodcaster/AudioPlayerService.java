@@ -8,9 +8,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.AudioManager;
@@ -23,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.preference.PreferenceManager;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
@@ -85,7 +88,9 @@ public class AudioPlayerService extends Service implements MediaPlayer.OnComplet
             audioPlayer.setDataSource(audioPath);
         } catch (IOException e) {
             e.printStackTrace();
+            Helper.removeMP3(audioPath);
             stopSelf();
+            return;
         }
         audioPlayer.prepareAsync();
 //        listener = (PlayerClicks) this;
@@ -819,7 +824,8 @@ public class AudioPlayerService extends Service implements MediaPlayer.OnComplet
 
     private NotificationCompat.Builder notificationBuilder = null;
 
-
+    private static final String THEME = "THEME_PREF";
+    private static final String DEFAULT_COLOR = "GREEN";
     private void buildNotification(){
 
         //Intent notIntent = new Intent(this,MainActivity.class);
@@ -847,6 +853,9 @@ public class AudioPlayerService extends Service implements MediaPlayer.OnComplet
             largeIcon = BitmapFactory.decodeResource(getResources(),R.drawable.ic_rss_feed_black_48dp);
         }
 
+        SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String ThemeColor = dbPreference.getString(THEME,DEFAULT_COLOR);
+        String currColor = getThemeColor(ThemeColor);
 
         //Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),R.drawable.dummy_image);
 
@@ -883,7 +892,9 @@ public class AudioPlayerService extends Service implements MediaPlayer.OnComplet
                 )
                // .setStyle(new NotificationCompat.BigTextStyle().bigText(currPod.getDescription()))
 
-                .setColor(getResources().getColor(R.color.colorCenterGreen))
+                //.setColor(getResources().getColor(R.color.colorCenterGreen))
+
+                .setColor(Color.parseColor(currColor))
 
                 .setContentIntent(pendingIntent)
 
@@ -912,6 +923,31 @@ public class AudioPlayerService extends Service implements MediaPlayer.OnComplet
 
     }
 
+    private String getThemeColor(String theme){
+
+        String colorString = "#bebebe";
+
+
+        switch (theme){
+            case "RED" : colorString = "#f44336";
+                break;
+            case "PINK" : colorString = "#ec407a";
+                break;
+            case "YELLOW" : colorString = "#ffca28";
+                break;
+            case "ORANGE" : colorString = "#ff5722";
+                break;
+            case "GREEN" : colorString = "#1b5e20";
+                break;
+            case "BLUE" : colorString  = "#0d47a1";
+                break;
+            case "BROWN" : colorString = "#795548";
+                break;
+        }
+
+        return colorString;
+    }
+
     private void updateNotification(){
         Bitmap largeIcon = null;
         try {
@@ -927,6 +963,7 @@ public class AudioPlayerService extends Service implements MediaPlayer.OnComplet
         notificationBuilder.setLargeIcon(largeIcon);
         notificationBuilder.setContentText(currPod.getPodName());
         notificationBuilder.setContentTitle(currPod.getEpTitle());
+
         //notificationBuilder.setContentInfo(currPod.getDescription());
 
         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).notify(NOTIFICATION_ID, notificationBuilder.build());

@@ -1,7 +1,15 @@
 package dahe0070.androidpodcaster;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.io.File;
 import java.io.IOException;
@@ -105,8 +113,90 @@ public class Helper {
 
     }
 
+    public static void ChangeTheme(View view, String colorChoice){
+        if(colorChoice == "GRAY"){
+            return;
+        }
+
+        MainActivity activity = (MainActivity) view.getContext();
+
+        NavigationView navigationView = (NavigationView) activity.findViewById(R.id.nav_view);
+
+        View header = navigationView.getHeaderView(0);
+        LinearLayout sideNavLayout = (LinearLayout)header.findViewById(R.id.sideNavLayout);
+
+        switch (colorChoice) {
+            case "RED" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_red); activity.getWindow().setStatusBarColor(Color.parseColor("#ba000d"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f44336")));
+                break;
+            case "PINK" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_pink); activity.getWindow().setStatusBarColor(Color.parseColor("#b4004e"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ec407a")));
+                break;
+            case "YELLOW" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_yellow); activity.getWindow().setStatusBarColor(Color.parseColor("#c79100"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffc107")));
+                break;
+            case "ORANGE" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_orange); activity.getWindow().setStatusBarColor(Color.parseColor("#c41c00"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ff5722")));
+                break;
+            case "GREEN" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_green); activity.getWindow().setStatusBarColor(Color.parseColor("#003300"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#1b5e20")));
+                break;
+            case "BLUE" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_blue); activity.getWindow().setStatusBarColor(Color.parseColor("#002171"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0d47a1")));
+                break;
+            case "BROWN" : sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_brown); activity.getWindow().setStatusBarColor(Color.parseColor("#4b2c20"));
+                ((AppCompatActivity)activity).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#795548")));
+                break;
+        }
+
+
+
+
+
+
+    }
+
+    public static String getDefaultLanguage(){
+        String language= Locale.getDefault().getDisplayLanguage();
+        if(language.equalsIgnoreCase("español")){
+
+            return "ES";
+        }
+
+        if(language.equalsIgnoreCase("English")){
+            return "US";
+        }
+
+        if(language.equalsIgnoreCase("Deutsch")){
+            return "DE";
+        }
+
+        if(language.equalsIgnoreCase("français")){
+            return "FR";
+        }
+        return "SE";
+    }
+
     public static ArrayList<Country> addFirstCountries(){
         ArrayList<Country> countries = new ArrayList<>();
+        String language= Locale.getDefault().getDisplayLanguage();
+        if(language.equalsIgnoreCase("español")){
+
+            countries.add(new Country("Spain","ES"));
+        }
+
+        if(language.equalsIgnoreCase("English")){
+            countries.add(new Country("USA","US"));
+        }
+
+        if(language.equalsIgnoreCase("Deutsch")){
+            countries.add(new Country("Germany","DE"));
+        }
+
+        if(language.equalsIgnoreCase("français")){
+            countries.add(new Country("France","FR"));
+        }
+
         countries.add(new Country("Sweden","SE"));
         countries.add(new Country("Denmark","DK"));
         countries.add(new Country("Norway","NO"));

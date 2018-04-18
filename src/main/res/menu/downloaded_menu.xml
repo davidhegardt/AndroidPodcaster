@@ -6,11 +6,11 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
     <item android:id="@+id/sort_by_date"
-        android:title="Sort By Date"
+        android:title="@string/ep_sorted_by_date"
         app:showAsAction="never"
         />
     <item android:id="@+id/sort_by_pod"
-        android:title="Sort By Podcast"
+        android:title="@string/ep_sorted_by_podcast"
         app:showAsAction="never"
         />
 

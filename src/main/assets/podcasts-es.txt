@@ -1,0 +1,10 @@
+Oh My LOL,https://recursosweb.prisaradio.com/podcasts/571.xml,swedish
+Nadie Sabe Nada,https://recursosweb.prisaradio.com/podcasts/488.xml,swedish
+TendenciasTech,http://www.spreaker.com/show/2139293/episodes/feed,swedish
+Learning English News Review,https://podcasts.files.bbci.co.uk/p05hw4bq.rss,swedish
+El Partidazo de COPE,http://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml,swedish
+6 Minute English,https://podcasts.files.bbci.co.uk/p02pc9tn.rss,swedish
+SER Historia,http://recursosweb.prisaradio.com/podcasts/355.xml,swedish
+LATE MOTIV de Andreu Buenafuente,http://www.ivoox.com/late-motiv-andreu-buenafuente_fg_f1310149_filtro_1.xml,swedish
+El Gran Apagón,http://fapi-top.prisasd.com/podcast/podium/el_gran_apagon.xml,swedish
+Es la Mañana de Federico,https://esradio.libertaddigital.com/es-la-manana-de-federico/podcast.xml,swedish

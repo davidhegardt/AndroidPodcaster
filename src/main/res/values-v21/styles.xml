@@ -6,6 +6,7 @@
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorBlueHue</item>
         <item name="android:statusBarColor">@color/colorBlueHue</item>
+
     </style>
 
     <style name="grey_theme" parent="AppTheme.NoActionBar">

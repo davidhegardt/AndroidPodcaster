@@ -146,7 +146,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
 
     public void createQuery(String category){
         SharedPreferences langPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String defLanguage = "SE";
+        String defLanguage = Helper.getDefaultLanguage();
         codeLanguage = langPref.getString(getString(R.string.searchLanguage),defLanguage);
         //String search = baseURLCat + country + codeSweden + category + limit;
         String search = baseURLCat + country + codeLanguage + category + limit;

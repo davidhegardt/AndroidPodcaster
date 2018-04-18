@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,6 +30,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -199,6 +201,10 @@ public class EpisodesFragment extends Fragment implements SearchView.OnQueryText
     }
 
     private boolean isTextViewClicked = false;
+    private static final String COLOR_RED = "RED";
+    private static final String THEME = "THEME_PREF";
+    private static final String DEFAULT_COLOR = "GREEN";
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -207,6 +213,11 @@ public class EpisodesFragment extends Fragment implements SearchView.OnQueryText
         for (PodEpisode i : epList){
             i.setBackupImage(currPodcast.getBackupImage());
         }
+
+        //RelativeLayout background = (RelativeLayout) view.findViewById(R.id.listHeader);
+        SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String ThemeColor = dbPreference.getString(THEME,DEFAULT_COLOR);
+        changeBackground(view,ThemeColor);
 
 
         ImageButton podImage = (ImageButton) view.findViewById(R.id.imgCurrPod);
@@ -278,6 +289,37 @@ public class EpisodesFragment extends Fragment implements SearchView.OnQueryText
                 }
             }
         });
+
+
+
+    }
+
+    public void changeBackground(View currView,String colorChoice){
+        /*
+        if(colorChoice == DEFAULT_COLOR){
+            return;
+        }
+*/
+        RelativeLayout background = (RelativeLayout) currView.findViewById(R.id.listHeader);
+        TextView podDesc = (TextView) currView.findViewById(R.id.txtPodHeaderDesc);
+        TextView podName = (TextView) currView.findViewById(R.id.txtHeaderPodName);
+
+        switch (colorChoice){
+            case "RED" : background.setBackgroundResource(R.drawable.bg_epheader_red);
+                break;
+            case "PINK" : background.setBackgroundResource(R.drawable.bg_epheader_pink); podDesc.setTextColor(Color.WHITE); podName.setTextColor(Color.WHITE);
+                break;
+            case "YELLOW" : background.setBackgroundResource(R.drawable.bg_epheader_yellow);
+                break;
+            case "ORANGE" : background.setBackgroundResource(R.drawable.bg_epheader_orange);
+                break;
+            case "GREEN" : background.setBackgroundResource(R.drawable.bg_epheader_green); podDesc.setTextColor(Color.WHITE); podName.setTextColor(Color.WHITE);
+                break;
+            case "BLUE" : background.setBackgroundResource(R.drawable.bg_epheader_blue); podDesc.setTextColor(Color.WHITE); podName.setTextColor(Color.WHITE);
+                break;
+            case "BROWN" : background.setBackgroundResource(R.drawable.bg_epheader_brown); podDesc.setTextColor(Color.WHITE); podName.setTextColor(Color.WHITE);
+                break;
+        }
 
 
 

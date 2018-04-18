@@ -2,7 +2,6 @@ Armchair Expert with Dax Shepard,https://rss.simplecast.com/podcasts/4123/rss,en
 Atlanta Monster,https://www.howstuffworks.com/shows/atlanta-monster.rss,english
 Joe Rogan Experience,http://joeroganexp.joerogan.libsynpro.com/rss,english
 Monday Morning Podcast,http://billburr.libsyn.com/rss,english
-My Dad Wrote a Porno,https://rss.acast.com/mydadwroteaporno,english
 Radiolab,http://feeds.wnyc.org/radiolab,english
 Revisionist History,http://feeds.feedburner.com/RevisionistHistory,english
 Rough Translation,https://www.npr.org/rss/podcast.php?id=510324,english

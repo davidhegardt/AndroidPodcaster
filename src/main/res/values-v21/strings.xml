@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unsubscribe">Unsubscribe</string>
+    <string name="remove_episode">Remove episode</string>
+    <string name="search_podcast">Search Podcast</string>
+</resources>

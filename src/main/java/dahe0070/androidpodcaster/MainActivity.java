@@ -47,15 +47,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+
+import dahe0070.androidpodcaster.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,PodcastFragment.OnFragmentInteractionListener,RadioFragment.OnFragmentInteractionListener,EpisodesFragment.OnFragmentInteractionListener,PodPlayerFragment.OnFragmentInteractionListener,
-        DownloadedEpisodesFragment.OnFragmentInteractionListener,StartedEpisodesFragment.OnFragmentInteractionListener,MediaController.MediaPlayerControl,SearchFragment.OnFragmentInteractionListener,LatestEpisodesFragment.OnFragmentInteractionListener,TabSearchFragment.OnFragmentInteractionListener,CategoryFragment.OnFragmentInteractionListener,NewSearchFragment.OnFragmentInteractionListener,PlayerClicks,PodAdder, android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
+        DownloadedEpisodesFragment.OnFragmentInteractionListener,StartedEpisodesFragment.OnFragmentInteractionListener,MediaController.MediaPlayerControl,SearchFragment.OnFragmentInteractionListener,LatestEpisodesFragment.OnFragmentInteractionListener,TabSearchFragment.OnFragmentInteractionListener,CategoryFragment.OnFragmentInteractionListener,NewSearchFragment.OnFragmentInteractionListener,SettingsFragment.OnListFragmentInteractionListener,PlayerClicks,PodAdder, android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
 
     private RadioParser radioParser;
     private RadioPlayer radioPlayer;
@@ -89,6 +93,9 @@ public class MainActivity extends AppCompatActivity
     public static final String Broadcast_FORWARD_AUDIO = "dahe0070.androidpodcaster.ForwardAudio";
     public static final String Broadcast_REWIND_AUDIO = "dahe0070.androidpodcaster.RewindAudio";
     public static final String Broadcast_RESTART_AUDIO = "dahe0070.androidpodcaster.RestartAudio";
+
+    private static final String THEME = "THEME_PREF";
+    private static final String DEFAULT_COLOR = "GREEN";
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
@@ -398,7 +405,14 @@ public class MainActivity extends AppCompatActivity
         }
 
         setLatestDuration(12);
+
+        SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(this);
+        String ThemeColor = dbPreference.getString(THEME,DEFAULT_COLOR);
+        RelativeLayout root = (RelativeLayout) findViewById(R.id.main_view);
+        Helper.ChangeTheme(root,ThemeColor);
     }
+
+
 
     ProgressDialog progressDialog;
     public static final int OPERATION_LOAD_PODCASTS = 22;
@@ -440,6 +454,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<String> loader) {
 
+    }
+
+    /* Change color of Theme */
+    @Override
+    public void onListFragmentInteraction(ColorTheme item) {
+        //Log.i("TEST CALL MAIN", item.getColorName());
+        Toast.makeText(this,getString(R.string.theme_set_text) + " " + item.getColorName(),Toast.LENGTH_SHORT).show();
+        RelativeLayout root = (RelativeLayout) findViewById(R.id.main_view);
+        Helper.ChangeTheme(root,item.getSwitchColorName());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor prefEdit = sharedPreferences.edit();
+        prefEdit.putString(THEME,item.getSwitchColorName());
+        prefEdit.commit();
     }
 
 
@@ -677,20 +704,22 @@ public class MainActivity extends AppCompatActivity
             setTitle(getString(R.string.Continue_episodes_title));
             fragmentManager.beginTransaction().replace(R.id.main_view, new StartedEpisodesFragment(),"progress").addToBackStack(null).commit();
         }
-/*
-        if (id == R.id.nav_search){
-            setTitle("Search for podcast");
-            fragmentManager.beginTransaction().replace(R.id.main_view, new SearchFragment(),"search").addToBackStack(null).commit();
+
+        if (id == R.id.nav_settings){
+            setTitle("Settings");
+            fragmentManager.beginTransaction().replace(R.id.main_view, new SettingsFragment(),"settings").addToBackStack(null).commit();
         }
-*/
+
         if(id == R.id.nav_tab_search){
             setTitle(getString(R.string.discover_podcasts));
             fragmentManager.beginTransaction().replace(R.id.main_view, new TabSearchFragment(),"tabs").addToBackStack(null).commit();
             /* PROGRAMATICALLY CHANGE NAVBAR COLOR */
+            /*
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             View header = navigationView.getHeaderView(0);
             LinearLayout sideNavLayout = (LinearLayout)header.findViewById(R.id.sideNavLayout);
             sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_red);
+            */
         }
 
         if(id == R.id.nav_latest){
@@ -723,7 +752,27 @@ public class MainActivity extends AppCompatActivity
     private void setupPodcasts(){
         podParser = new PodcastParser(this,false);
         try {
-            podParser.readFromAssets("podcasts.txt");
+            String language= Locale.getDefault().getDisplayLanguage();
+            String podcastFile = "podcasts.txt";
+            Log.i("Current language",language);
+            if(language.equalsIgnoreCase("español")){
+                Log.i("SPANISH","JAJAJAJA");
+                podcastFile = "podcasts-es.txt";
+            }
+
+            if(language.equalsIgnoreCase("English")){
+                podcastFile = "podcasts-en-start.txt";
+            }
+
+            if(language.equalsIgnoreCase("Deutsch")){
+                podcastFile = "podcasts-de.txt";
+            }
+
+            if(language.equalsIgnoreCase("français")){
+                podcastFile = "podcasts-fr.txt";
+            }
+            //if(language.equals())
+            podParser.readFromAssets(podcastFile);
             podParser.startParse();
             //podcasts = podParser.getAllPodcasts();
             //writeToDatabase();
@@ -1068,6 +1117,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public ArrayList<Podcast> syncSwedishRetrieval() {
         if (podcasts != null){
+            String language= Locale.getDefault().getDisplayLanguage();
+            Log.i("Current language",language);
+            if(language.equalsIgnoreCase("English")){
+                SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(this);
+                boolean defValue = false;
+                boolean DBOK = dbPreference.getBoolean(getString(R.string.data_ok),defValue);
+                if(!DBOK){
+                    setDBComplete(true);
+                }
+            }
             return podcasts;
         } else return null;
     }

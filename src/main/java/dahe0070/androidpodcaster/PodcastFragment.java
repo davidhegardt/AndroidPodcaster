@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 /**
@@ -131,8 +132,16 @@ public class PodcastFragment extends Fragment implements SearchView.OnQueryTextL
         Log.i("podcastlist ","size" + podcastList.size());
 
         spinner = (Spinner) getView().findViewById(R.id.podSpinner);
+        String language= Locale.getDefault().getDisplayLanguage();
+        Log.i("Current language",language);
+
+
 
         String[] choices = {getString(R.string.select_list),getString(R.string.svenska_poddar),getString(R.string.engelska_poddar),getString(R.string.egen_lista)};
+
+        if(language.equalsIgnoreCase("English")){
+            choices = new String[]{getString(R.string.select_list), getString(R.string.svenska_poddar), getString(R.string.egen_lista)};
+        }
         /**
          * Lägg till val egen lista
          */
@@ -291,20 +300,38 @@ public class PodcastFragment extends Fragment implements SearchView.OnQueryTextL
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String choice = parent.getItemAtPosition(position).toString();
 
-        switch (choice){
-            case "Svenska Poddar" : Log.i("Svenska poddar","Nu");
-                //startSwedishList();
-                readFromDb(1);
-                break;
-            case "Engelska Poddar" :
-                startEnglishList();
-                break;
-            case "Egen Lista" :
-                readFromDb(0);
-                break;
-            /**
-             * LÄGG TILL FUNKTION EGEN LISTA
-             */
+        String language= Locale.getDefault().getDisplayLanguage();
+        if (language.equalsIgnoreCase("English")){
+            switch (position){
+                case 1 : Log.i("Svenska poddar","Nu");
+                    //startSwedishList();
+                    readFromDb(1);
+                    break;
+                case 2 :
+                    readFromDb(0);
+                    break;
+                /**
+                 * LÄGG TILL FUNKTION EGEN LISTA
+                 */
+            }
+        } else {
+
+            switch (position) {
+                case 1:
+                    Log.i("Svenska poddar", "Nu");
+                    //startSwedishList();
+                    readFromDb(1);
+                    break;
+                case 2:
+                    startEnglishList();
+                    break;
+                case 3:
+                    readFromDb(0);
+                    break;
+                /**
+                 * LÄGG TILL FUNKTION EGEN LISTA
+                 */
+            }
         }
     }
 

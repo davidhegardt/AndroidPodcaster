@@ -3,6 +3,6 @@
     <item
         android:id="@+id/delete"
         android:icon="@drawable/trash_white"
-        android:title="Remove episode"
+        android:title="@string/remove_episode"
         app:showAsAction="always" />
 </menu>

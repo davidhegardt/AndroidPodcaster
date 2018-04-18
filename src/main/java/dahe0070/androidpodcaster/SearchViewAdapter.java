@@ -2,6 +2,7 @@ package dahe0070.androidpodcaster;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class SearchViewAdapter extends RecyclerView.Adapter<Search_View_Holder> 
         holder.podName.setText(list.get(position).getPodName());
 
         holder.feed.setText(list.get(position).getFeedLink());
+        Log.i("feed url",list.get(position).getFeedLink());
 
         if(list.get(position).getFeedLink() == ""){
             holder.subscribe.setVisibility(View.INVISIBLE);

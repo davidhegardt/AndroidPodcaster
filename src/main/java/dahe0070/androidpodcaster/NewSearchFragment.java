@@ -2,10 +2,12 @@ package dahe0070.androidpodcaster;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -85,6 +88,10 @@ public class NewSearchFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_new_search, container, false);
     }
 
+    private static final String COLOR_RED = "RED";
+    private static final String DEFAULT_COLOR = "GREEN";
+    private static final String THEME = "THEME_PREF";
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -100,6 +107,36 @@ public class NewSearchFragment extends Fragment {
                 search(baseURL + theSearch);
             }
         });
+        SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String ThemeColor = dbPreference.getString(THEME,DEFAULT_COLOR);
+
+        switchBackground(view,ThemeColor);
+    }
+
+    public void switchBackground(View currView,String colorChoice){
+        /*
+        if(colorChoice == DEFAULT_COLOR){
+            return;
+        }
+        */
+        RelativeLayout background = (RelativeLayout) currView.findViewById(R.id.upperLayout);
+
+        switch (colorChoice){
+            case COLOR_RED : background.setBackgroundResource(R.drawable.bg_epheader_red);
+                break;
+            case "PINK" : background.setBackgroundResource(R.drawable.bg_epheader_pink);
+                break;
+            case "YELLOW" : background.setBackgroundResource(R.drawable.bg_epheader_yellow);
+                break;
+            case "ORANGE" : background.setBackgroundResource(R.drawable.bg_epheader_orange);
+                break;
+            case "GREEN" : background.setBackgroundResource(R.drawable.bg_epheader_green);
+                break;
+            case "BLUE" : background.setBackgroundResource(R.drawable.bg_epheader_blue);
+                break;
+            case "BROWN" : background.setBackgroundResource(R.drawable.bg_epheader_brown);
+                break;
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

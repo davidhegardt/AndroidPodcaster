@@ -320,6 +320,9 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
         ImageButton btnDownload;
         TextView epPodcastTitle;
 
+        private static final String THEME = "THEME_PREF";
+        private static final String DEFAULT_COLOR = "GREEN";
+
         public MyViewHolder(View itemView, MultiSelector multiSelector, ModalMultiSelectorCallback mCallback) {
             super(itemView, multiSelector);
             //this.callBack = mCallback;
@@ -336,6 +339,10 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             episodeProgress = (ProgressBar) itemView.findViewById(R.id.progressBarEpisode);
             if(TYPE.equals("EPISODES")){
                 epPodcastTitle = (TextView) itemView.findViewById(R.id.txtEpPodcastTitle);
+                SharedPreferences dbPreference = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
+                String ThemeColor = dbPreference.getString(THEME,DEFAULT_COLOR);
+                changeTextColor(ThemeColor);
+
             }
 
             btnPlay = (ImageButton) itemView.findViewById(R.id.btnPlayEpisode);
@@ -345,6 +352,26 @@ public class Recycler_View_Adapter extends RecyclerView.Adapter<Recycler_View_Ad
             btnDownload.setOnClickListener(this);
             itemView.setLongClickable(true);
             itemView.setOnLongClickListener(this);
+        }
+
+        private void changeTextColor(String theme){
+
+            switch (theme){
+                case "RED" : epPodcastTitle.setTextColor(Color.parseColor("#f44336"));
+                    break;
+                case "PINK" : epPodcastTitle.setTextColor(Color.parseColor("#ec407a"));
+                    break;
+                case "YELLOW" : epPodcastTitle.setTextColor(Color.parseColor("#ffca28"));
+                    break;
+                case "ORANGE" : epPodcastTitle.setTextColor(Color.parseColor("#ff5722"));
+                    break;
+                case "GREEN" : epPodcastTitle.setTextColor(Color.parseColor("#1b5e20"));
+                    break;
+                case "BLUE" : epPodcastTitle.setTextColor(Color.parseColor("#0d47a1"));
+                    break;
+                case "BROWN" : epPodcastTitle.setTextColor(Color.parseColor("#795548"));
+                    break;
+            }
         }
 
 
