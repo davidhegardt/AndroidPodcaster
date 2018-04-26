@@ -1,7 +1,7 @@
 # AndroidPodcaster
 
 Fully working Podcast application for Android. SQLite database with full CRUD functionality.
-App is fully translated to Swedish,German,Spanish and French. Users are ablo to :
+App is fully translated to English,Swedish,German,Spanish and French. Users are ablo to :
 - Listen to Top Swe and Eng podcasts which are pre-loaded into the app
 - Search podcasts and add to a personal lists
 - Stream or download episodes from any podcasts
