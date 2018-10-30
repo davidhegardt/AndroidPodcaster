@@ -1,4 +1,6 @@
-# AndroidPodcaster
+# AndroidPodcaster 
+
+Availible on Google play : https://play.google.com/store/apps/details?id=dahe0070.androidpodcaster&hl=sv
 
 Fully working Podcast application for Android. SQLite database with full CRUD functionality.
 App is fully translated to English,Swedish,German,Spanish and French. Users are ablo to :
